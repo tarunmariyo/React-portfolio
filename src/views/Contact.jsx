@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 4rem 2rem;
@@ -204,7 +204,7 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
         >
           <SocialLink
-            href="https://github.com/yourusername"
+            href="https://github.com/tarunmariyo"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ x: 10 }}
@@ -215,7 +215,7 @@ const Contact = () => {
             GitHub
           </SocialLink>
           <SocialLink
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/tarun-kumar-2a9491295/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ x: 10 }}
@@ -226,18 +226,18 @@ const Contact = () => {
             LinkedIn
           </SocialLink>
           <SocialLink
-            href="https://twitter.com/yourusername"
+            href="https://www.instagram.com/mariya_tarun/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ x: 10 }}
           >
             <Icon>
-              <FaTwitter />
+              <FaInstagram />
             </Icon>
-            Twitter
+            Instagram
           </SocialLink>
           <SocialLink
-            href="mailto:your.email@example.com"
+            href="mailto:tarunmariya320@gmail.com"
             whileHover={{ x: 10 }}
           >
             <Icon>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaApple, FaReact, FaCode } from 'react-icons/fa';
+import profilePic from '../assets/profile.png';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -11,6 +12,41 @@ const HeroSection = styled.section`
   align-items: center;
   text-align: center;
   padding: 2rem;
+`;
+
+const ProfileImage = styled(motion.div)`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  border: 4px solid transparent;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) padding-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;
 
 const Title = styled(motion.h1)`
@@ -41,6 +77,13 @@ const SkillIcon = styled(motion.div)`
 const Home = () => {
   return (
     <HeroSection>
+      <ProfileImage
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <img src={profilePic} alt="Tarun Kumar" />
+      </ProfileImage>
       <Title
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
