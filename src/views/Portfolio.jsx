@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import hmsimage from '../assets/hms.png'
+import arflashcardimage from '../assets/arflashcard.png'
+import leolingoimage from '../assets/leolingo.png'
 
 const PortfolioSection = styled.section`
   padding: 4rem 2rem;
@@ -51,25 +54,25 @@ const ProjectDescription = styled.p`
   line-height: 1.6;
 `;
 
-// Sample project data - replace with your actual projects
+
 const projects = [
   {
     id: 1,
-    title: 'Fitness Tracker App',
-    description: 'A comprehensive fitness tracking application with workout plans and progress monitoring.',
-    image: '/path-to-your-image-1.jpg', // Replace with your actual image paths
+    title: 'Hospital Management System',
+    description: 'A responsive Hospital Management System designed to streamline patient, doctor, admin and super admin workflows with modern UI and role-based access..',
+    image: hmsimage,
   },
   {
     id: 2,
-    title: 'E-commerce App',
-    description: 'Modern e-commerce platform with smooth user experience and secure payment integration.',
-    image: '/path-to-your-image-2.jpg', // Replace with your actual image paths
+    title: 'AR-Flashcards',
+    description: 'An interactive AR Flashcard App that helps kids learn words through voice recognition, animations, and engaging AR visuals.',
+    image: arflashcardimage,
   },
   {
     id: 3,
-    title: 'Social Media App',
-    description: 'Social networking application with real-time updates and interactive features.',
-    image: '/path-to-your-image-3.jpg', // Replace with your actual image paths
+    title: 'LeoLingo',
+    description: 'LeoLingo is a fun, interactive speech therapy app that helps kids improve their speaking skills through games, songs, and voice-based activities..',
+    image: leolingoimage,
   },
 ];
 

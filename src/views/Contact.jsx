@@ -23,7 +23,7 @@ const SectionTitle = styled(motion.h2)`
 
 const SuccessMessage = styled(motion.div)`
   position: fixed;
-  top: 20px;
+  top: 60px;
   right: 20px;
   background: rgba(46, 213, 115, 0.9);
   color: white;
