@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = styled.section`
   padding: 4rem 2rem;
@@ -18,6 +19,19 @@ const SectionTitle = styled(motion.h2)`
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+const SuccessMessage = styled(motion.div)`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(46, 213, 115, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 `;
 
 const ContactContainer = styled.div`
@@ -121,16 +135,36 @@ const Icon = styled.div`
 `;
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.sendForm(
+        'service_d82jm0m',
+        'template_qudqwfn',
+        form.current,
+        'bg7K3hxlgQ0bHcAuM'
+      );
+
+      setFormData({ name: '', email: '', message: '' });
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 5000); // Hide success message after 5 seconds
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -143,6 +177,19 @@ const Contact = () => {
 
   return (
     <ContactSection>
+      <AnimatePresence>
+        {showSuccess && (
+          <SuccessMessage
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.3 }}
+          >
+            Message sent successfully!
+          </SuccessMessage>
+        )}
+      </AnimatePresence>
+
       <SectionTitle
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -152,6 +199,7 @@ const Contact = () => {
       </SectionTitle>
       <ContactContainer>
         <ContactForm
+          ref={form}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -193,8 +241,10 @@ const Contact = () => {
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            disabled={isSubmitting}
+            style={{ opacity: isSubmitting ? 0.7 : 1 }}
           >
-            Send Message
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </SubmitButton>
         </ContactForm>
 
