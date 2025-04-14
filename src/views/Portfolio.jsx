@@ -34,10 +34,14 @@ const ProjectCard = styled(motion.div)`
 `;
 
 const ProjectImage = styled(motion.img)`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+width: 100%;
+height: 200px;
+object-fit: cover;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+display: block;
 `;
+
 
 const ProjectInfo = styled.div`
   padding: 1.5rem;
